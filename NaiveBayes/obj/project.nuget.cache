@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "dgSpecHash": "tLKL/5mSpdQ=",
+  "success": true,
+  "projectFilePath": "/Users/tobiashocevar/Desktop/bakalarka kod/NaiveBayes/NaiveBayes.csproj",
+  "expectedPackageFiles": [
+    "/Users/tobiashocevar/.nuget/packages/csvhelper/33.0.1/csvhelper.33.0.1.nupkg.sha512",
+    "/Users/tobiashocevar/.nuget/packages/ikvm/8.1.5717/ikvm.8.1.5717.nupkg.sha512",
+    "/Users/tobiashocevar/.nuget/packages/opennlp.net/1.9.4/opennlp.net.1.9.4.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'IKVM 8.1.5717' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "IKVM",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'OpenNLP.NET 1.9.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "OpenNLP.NET",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
+}
