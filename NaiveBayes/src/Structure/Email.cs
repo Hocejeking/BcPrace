@@ -15,10 +15,5 @@ public class Email
         TokenizedMessage = TextProcessing.RemoveStopWords(TokenizedMessage);
         TokenizedMessage = TextProcessing.RemovePunctuation(TokenizedMessage);
         TokenizedMessage = TextProcessing.StemTokens(TokenizedMessage);
-
-        foreach(string token in TokenizedMessage){
-            if(this.Class == "ham"){
-            }
-        }
     }
 }

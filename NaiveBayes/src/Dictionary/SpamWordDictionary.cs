@@ -1,0 +1,1 @@
+class  SpamWordDictionary : WordDictionary{}

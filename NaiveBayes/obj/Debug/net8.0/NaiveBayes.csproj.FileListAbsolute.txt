@@ -74,3 +74,4 @@
 /Users/tobiashocevar/Desktop/bakalarka kod/NaiveBayes/bin/Debug/net8.0/opennlp-tools-1.9.4.dll
 /Users/tobiashocevar/Desktop/bakalarka kod/NaiveBayes/bin/Debug/net8.0/opennlp-uima-1.9.4.dll
 /Users/tobiashocevar/Desktop/bakalarka kod/NaiveBayes/bin/Debug/net8.0/osgi-resource-locator-1.0.3.dll
+/Users/tobiashocevar/Desktop/bakalarka kod/NaiveBayes/obj/Debug/net8.0/NaiveBayes.sourcelink.json

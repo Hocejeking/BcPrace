@@ -2,9 +2,6 @@
 using CsvHelper.Configuration;
 using System.Globalization;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.IO;
-using java.util;
 internal class Program
 {
     private static void Main(string[] args)
@@ -44,6 +41,8 @@ internal class Program
                     }
                 }
             }
+            hamWordDictionary.calculatePropabilities();
+            spamWordDictionary.calculatePropabilities();
             data = new Dataset(emails.LastOrDefault().Id+2, hamCounter,spamCounter);
         }
         stopwatch.Stop();
