@@ -1,1 +1,1 @@
-class  SpamWordDictionary : WordDictionary{}
+class SpamWordDictionary : WordDictionary { }

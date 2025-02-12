@@ -1,8 +1,9 @@
-public interface IWordDictionary{
-    void addWordOrUpdate(string token);
-    decimal getAmountOfWord(string token);
-    decimal getAmountOfWords();
-    void addPropability(string token, decimal propability);
-    decimal getPropability(string token);
-    void calculatePropabilities();
+public interface IWordDictionary
+{
+    void AddWordOrUpdate(string token);
+    decimal GetAmountOfWord(string token);
+    decimal GetAmountOfWords();
+    void AddPropability(string token, decimal propability);
+    decimal GetPropability(string token);
+    void CalculatePropabilities();
 }

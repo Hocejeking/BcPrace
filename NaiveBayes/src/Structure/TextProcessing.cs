@@ -1,5 +1,6 @@
 using opennlp.tools.stemmer;
 using opennlp.tools.tokenize;
+
 public static class TextProcessing
 {
     public static PorterStemmer porterStemmer = new PorterStemmer();
@@ -13,20 +14,22 @@ public static class TextProcessing
         "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "[", "]", "{", "}", "\\", "|", ";", ":", "'", "\"", ",", ".", "<", ">", "/", "?", " ", "\n"
     };
 
-     public static string[] RemoveStopWords(string[] tokens)
+    public static string[] RemoveStopWords(string[] tokens)
     {
         return tokens.Where(token => !stopWords.Contains(token.ToLower())).ToArray();
     }
 
-    public static string[] RemovePunctuation(string[] tokens){
+    public static string[] RemovePunctuation(string[] tokens)
+    {
         return tokens.Where(token => !punctuation.Contains(token.ToLower())).ToArray();
     }
 
-    public static string[] Tokenize(string message){
+    public static string[] Tokenize(string message)
+    {
         return whitespaceTokenizer.tokenize(message.ToLower());
     }
 
-   public static string[] StemTokens(string[] tokens)
+    public static string[] StemTokens(string[] tokens)
     {
         var stemmer = new PorterStemmer();
         return tokens.Select(token => stemmer.stem(token)).ToArray();

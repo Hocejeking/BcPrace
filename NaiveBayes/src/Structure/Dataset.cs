@@ -1,11 +1,12 @@
 public class Dataset
 {
-    public Dataset(int numOfEmails, int numOfSpamEmails, int numOfHamEmails){
+    public Dataset(int numOfEmails, int numOfSpamEmails, int numOfHamEmails)
+    {
         this.numOfEmails = numOfEmails;
         this.numOfSpamEmails = numOfSpamEmails;
         this.numOfHamEmails = numOfHamEmails;
-        this.priorPropabilitySpam = (decimal)numOfSpamEmails/numOfEmails;
-        this.priorPropabilityHam = (decimal)numOfHamEmails/numOfEmails;
+        this.priorPropabilitySpam = (decimal)numOfSpamEmails / numOfEmails;
+        this.priorPropabilityHam = (decimal)numOfHamEmails / numOfEmails;
     }
 
     public readonly int numOfEmails;

@@ -1,32 +1,33 @@
 {
   "version": 2,
-  "dgSpecHash": "tLKL/5mSpdQ=",
+  "dgSpecHash": "/Ks9/Hn74qBGhO1qG2LJAMyJruqRFZQHukfbhLe1VpKnLfTCMOe12jaOhMtxfdq+q9BRk/ZqPS0VVQ9693yoZQ==",
   "success": true,
-  "projectFilePath": "/Users/tobiashocevar/Desktop/bakalarka kod/NaiveBayes/NaiveBayes.csproj",
+  "projectFilePath": "A:\\BcPraceKod\\NaiveBayes\\NaiveBayes.csproj",
   "expectedPackageFiles": [
-    "/Users/tobiashocevar/.nuget/packages/csvhelper/33.0.1/csvhelper.33.0.1.nupkg.sha512",
-    "/Users/tobiashocevar/.nuget/packages/ikvm/8.1.5717/ikvm.8.1.5717.nupkg.sha512",
-    "/Users/tobiashocevar/.nuget/packages/opennlp.net/1.9.4/opennlp.net.1.9.4.nupkg.sha512"
+    "C:\\Users\\Administrator\\.nuget\\packages\\csvhelper\\33.0.1\\csvhelper.33.0.1.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\ikvm\\8.1.5717\\ikvm.8.1.5717.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\opennlp.net\\1.9.4\\opennlp.net.1.9.4.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'IKVM 8.1.5717' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "message": "Balíček IKVM 8.1.5717 se místo cílové verze rozhraní .NET Framework projektu net6.0 obnovil pomocí .NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8. Balíček nemusí být plně kompatibilní s vaším projektem.",
       "libraryId": "IKVM",
       "targetGraphs": [
-        "net8.0"
+        "net6.0"
       ]
     },
     {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'OpenNLP.NET 1.9.4' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "message": "Balíček OpenNLP.NET 1.9.4 se místo cílové verze rozhraní .NET Framework projektu net6.0 obnovil pomocí .NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8. Balíček nemusí být plně kompatibilní s vaším projektem.",
       "libraryId": "OpenNLP.NET",
       "targetGraphs": [
-        "net8.0"
+        "net6.0"
       ]
     }
   ]
