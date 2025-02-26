@@ -17,7 +17,7 @@ namespace NaiveBayes.src.Utils
                 { EmailTypes.HAM, hamProbs},
                 { EmailTypes.SPAM, spamProbs},
             };
-            Console.WriteLine("Saving model");
+            Console.WriteLine("\nSaving model");
             string directoryPath = "TrainedModel";
             string filePath = Path.Combine(directoryPath, "TrainedModel.json");
 
@@ -31,7 +31,7 @@ namespace NaiveBayes.src.Utils
 
             File.WriteAllText(filePath, jsonData);
 
-            Console.WriteLine($"Data has been saved to {filePath}");
+            Console.WriteLine($"\nData has been saved to {filePath}");
         }
 
     }

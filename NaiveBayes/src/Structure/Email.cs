@@ -1,16 +1,17 @@
 using CsvHelper.Configuration.Attributes;
+using NaiveBayes.src.Structure;
 
-public class Email
+public class Email : IEmail
 {
+    [Ignore]
+    public String[]? TokenizedMessage;
+
     public int Id { get; set; }
     public string? Subject { get; set; }
     public string? Message { get; set; }
     [EnumIgnoreCase]
     public EmailTypes Class { get; set; }
     public string? Date { get; set; }
-
-    [Ignore]
-    public String[]? TokenizedMessage;
 
     public void PerformDeserializationLogic()
     {
