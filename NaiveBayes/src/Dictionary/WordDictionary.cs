@@ -1,4 +1,4 @@
-public class WordDictionary : IWordDictionary
+public abstract class WordDictionary : IWordDictionary
 {
     private Dictionary<string, int> _wordDictionary = new();
     private Dictionary<string, decimal> _wordPropabilities = new();
