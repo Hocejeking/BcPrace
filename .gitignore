@@ -398,3 +398,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+NaiveBayes/Dataset/enron_mail_20150507.tar.gz

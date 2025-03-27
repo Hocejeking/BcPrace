@@ -83,7 +83,6 @@ internal class Program
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("\nDone in " + stopwatch.Elapsed.Seconds + " seconds");
         Console.ForegroundColor = ConsoleColor.White;
-        Console.Clear();
         stopwatch.Restart();
         Console.WriteLine("Classifying...");
         List<EmailBenchmark> rewrittenEmails;
