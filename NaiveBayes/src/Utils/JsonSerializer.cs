@@ -10,12 +10,12 @@ namespace NaiveBayes.src.Utils
 {
     public static class JsonSerializer
     {
-      public static void Serialization(Dictionary<string, decimal> hamProbs, Dictionary<string, decimal> spamProbs)
-      {
-            var data = new Dictionary<EmailTypes, Dictionary<string, decimal>>
+        public static void Serialization(Dictionary<string, decimal> hamProbs, Dictionary<string, decimal> spamProbs)
+        {
+            var data = new Dictionary<EmailClass, Dictionary<string, decimal>>
             {
-                { EmailTypes.HAM, hamProbs},
-                { EmailTypes.SPAM, spamProbs},
+                { EmailClass.HAM, hamProbs},
+                { EmailClass.SPAM, spamProbs},
             };
             Console.WriteLine("\nSaving model");
             string directoryPath = "TrainedModel";
@@ -34,5 +34,18 @@ namespace NaiveBayes.src.Utils
             Console.WriteLine($"\nData has been saved to {filePath}");
         }
 
+        public static Dictionary<EmailClass, Dictionary<string, decimal>> Deserialization()
+        {
+            string filePath = "TrainedModel/TrainedModel.json";
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException("File does not exist", filePath);
+            }
+            string jsonData = File.ReadAllText(filePath);
+            var model = JsonConvert.DeserializeObject<Dictionary<EmailClass, Dictionary<string, decimal>>>(jsonData);
+            return model;
+        }
     }
+
+
 }

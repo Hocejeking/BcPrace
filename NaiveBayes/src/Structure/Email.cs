@@ -10,7 +10,7 @@ public class Email : IEmail
     public string? Subject { get; set; }
     public string? Message { get; set; }
     [EnumIgnoreCase]
-    public EmailTypes Class { get; set; }
+    public EmailClass Class { get; set; }
     public string? Date { get; set; }
 
     public void PerformDeserializationLogic()
