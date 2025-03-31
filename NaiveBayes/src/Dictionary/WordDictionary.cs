@@ -1,7 +1,7 @@
 public abstract class WordDictionary : IWordDictionary
 {
-    private Dictionary<string, int> _wordDictionary = new();
-    private Dictionary<string, decimal> _wordPropabilities = new();
+    private Dictionary<string, decimal> _wordDictionary = new();
+    private Dictionary<string, decimal> _wordProbabilities = new();
 
     public void AddWordOrUpdate(string token)
     {
@@ -17,41 +17,38 @@ public abstract class WordDictionary : IWordDictionary
 
     public decimal GetAmountOfWord(string token)
     {
-        return _wordDictionary[token];
+        return _wordDictionary.TryGetValue(token, out var count) ? count : 0;
     }
 
-    public decimal GetAmountOfWords()
+    public decimal GetUniqueWordsCount()
     {
         return _wordDictionary.Count;
     }
 
-    public void AddPropability(string token, decimal propability)
+    public void AddProbability(string token, decimal probability)
     {
-        if (_wordPropabilities.ContainsKey(token))
+        if (!_wordProbabilities.ContainsKey(token))
         {
-            return;
-        }
-        else
-        {
-            _wordPropabilities.Add(token, propability);
+            _wordProbabilities.Add(token, probability);
         }
     }
 
-    public decimal GetPropability(string token)
+    public decimal GetProbability(string token)
     {
-        return _wordPropabilities[token];
+        return _wordProbabilities.TryGetValue(token, out var prob) ? prob : 0;
     }
 
     public Dictionary<string, decimal> GetSavedModel()
     {
-        return _wordPropabilities;
+        return _wordProbabilities;
     }
 
-    public void CalculatePropabilities()
+    public void CalculateProbabilities()
     {
-        foreach (KeyValuePair<string, int> word in _wordDictionary)
+        foreach (KeyValuePair<string, decimal> word in _wordDictionary)
         {
-            _wordPropabilities.Add(word.Key, (decimal)(GetAmountOfWord(word.Key) / GetAmountOfWords()));
+            decimal probability = word.Value / GetUniqueWordsCount();
+            AddProbability(word.Key, probability);
         }
     }
 }

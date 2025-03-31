@@ -9,7 +9,7 @@ namespace NaiveBayes.src.Structure
 {
     public interface IEmail
     {
-        public int Id { get; set; }
+        public double Id { get; set; }
         public string? Subject { get; set; }
         public string? Message { get; set; }
         [EnumIgnoreCase]

@@ -70,8 +70,8 @@ internal class Program
                 }
             }
 
-            hamWordDictionary.CalculatePropabilities();
-            spamWordDictionary.CalculatePropabilities();
+            hamWordDictionary.CalculateProbabilities();
+            spamWordDictionary.CalculateProbabilities();
 
             data = new Dataset(counter, hamCounter, spamCounter, hamWordsCount, spamWordsCount);
         }
@@ -84,9 +84,9 @@ internal class Program
         Console.WriteLine("\nDone in " + stopwatch.Elapsed.Seconds + " seconds");
         Console.ForegroundColor = ConsoleColor.White;
         stopwatch.Restart();
-        Console.WriteLine("Classifying...");
+        Console.WriteLine("Classifying... (This can take a long time depending on the data size) ");
         List<EmailBenchmark> rewrittenEmails;
-        var filePathBenchmark = "../../../Dataset/rewrittenDataset.csv";
+        var filePathBenchmark = "../../../Dataset/enron_spam_data.csv";
         var configBenchmark = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
             HeaderValidated = null,
@@ -99,12 +99,16 @@ internal class Program
             rewrittenEmails = csv.GetRecords<EmailBenchmark>().ToList();
             var trainedData = JsonSerializer.Deserialization();
             NaiveBayesClassifier naiveBayes = new NaiveBayesClassifier(trainedData, data);
-            int correctCounter = 0, falseCounter = 0;
+            int correctCounter = 0, falseCounter = 0, counter = 0;
             foreach (var email in rewrittenEmails)
             {
                 email.PerformDeserializationLogic();
                 bool isSpam = naiveBayes.Predict(email.TokenizedMessage);
-                if (isSpam)
+                if (email.Class == EmailClass.SPAM && isSpam == true)
+                {
+                    correctCounter++;
+                }
+                else if(email.Class == EmailClass.HAM && isSpam == false)
                 {
                     correctCounter++;
                 }
@@ -112,6 +116,7 @@ internal class Program
                 {
                     falseCounter++;
                 }
+
             }
 
             Console.WriteLine("The number of correctly classified emails is: " + correctCounter);
