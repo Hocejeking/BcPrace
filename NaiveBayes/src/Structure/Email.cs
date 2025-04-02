@@ -15,10 +15,10 @@ public class Email : IEmail
 
     public void PerformDeserializationLogic()
     {
-
         TokenizedMessage = TextProcessing.Tokenize(Message);
         TokenizedMessage = TextProcessing.RemoveStopWords(TokenizedMessage);
         TokenizedMessage = TextProcessing.RemovePunctuation(TokenizedMessage);
+        TokenizedMessage = TextProcessing.RemoveIsolatedNums(TokenizedMessage);
         TokenizedMessage = TextProcessing.StemTokens(TokenizedMessage);
     }
 }

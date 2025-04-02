@@ -25,6 +25,7 @@ namespace NaiveBayes.src.Structure
             TokenizedMessage = TextProcessing.Tokenize(Message);
             TokenizedMessage = TextProcessing.RemoveStopWords(TokenizedMessage);
             TokenizedMessage = TextProcessing.RemovePunctuation(TokenizedMessage);
+            TokenizedMessage = TextProcessing.RemoveIsolatedNums(TokenizedMessage);
             TokenizedMessage = TextProcessing.StemTokens(TokenizedMessage);
         }
     }

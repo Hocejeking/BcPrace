@@ -35,8 +35,7 @@ namespace NaiveBayes.Classifier
                 Spam += Math.Log(spamProb);
                 Ham += Math.Log(hamProb);
             }
-
-            Console.WriteLine("PriorSpam: " + Spam + " PriorHam: " + Ham);
+            
             return Spam > Ham;
         }
     }
