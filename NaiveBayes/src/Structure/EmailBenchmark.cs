@@ -22,7 +22,7 @@ namespace NaiveBayes.src.Structure
 
         public void PerformDeserializationLogic()
         {
-            TokenizedMessage = TextProcessing.Tokenize(Message);
+            TokenizedMessage = TextProcessing.Tokenize(RewrittenMessage);
             TokenizedMessage = TextProcessing.RemoveStopWords(TokenizedMessage);
             TokenizedMessage = TextProcessing.RemovePunctuation(TokenizedMessage);
             TokenizedMessage = TextProcessing.RemoveIsolatedNums(TokenizedMessage);

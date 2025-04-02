@@ -1,6 +1,7 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using NaiveBayes.Classifier;
+using NaiveBayes.src.Classifier;
 using NaiveBayes.src.Structure;
 using NaiveBayes.src.Utils;
 using System.Diagnostics;
@@ -86,7 +87,7 @@ internal class Program
         stopwatch.Restart();
         Console.WriteLine("Classifying... (This can take a long time depending on the data size) ");
         List<EmailBenchmark> rewrittenEmails;
-        var filePathBenchmark = "../../../Dataset/enron_spam_data.csv";
+        var filePathBenchmark = "../../../Dataset/rewrittenDataset.csv";
         var configBenchmark = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
             HeaderValidated = null,
@@ -99,32 +100,45 @@ internal class Program
             rewrittenEmails = csv.GetRecords<EmailBenchmark>().ToList();
             var trainedData = JsonSerializer.Deserialization();
             NaiveBayesClassifier naiveBayes = new NaiveBayesClassifier(trainedData, data);
-            int correctCounter = 0, falseCounter = 0, counter = 0;
+            int truePositive = 0, trueNegative = 0, falsePositive = 0, falseNegative = 0;
             foreach (var email in rewrittenEmails)
             {
                 email.PerformDeserializationLogic();
                 bool isSpam = naiveBayes.Predict(email.TokenizedMessage);
-                if (email.Class == EmailClass.SPAM && isSpam == true)
+                if(isSpam == true && email.Class == EmailClass.SPAM)
                 {
-                    correctCounter++;
+                    truePositive++;
                 }
-                else if(email.Class == EmailClass.HAM && isSpam == false)
+                else if(isSpam == false && email.Class == EmailClass.SPAM)
                 {
-                    correctCounter++;
+                    falseNegative++;
                 }
-                else
+                else if(isSpam == false && email.Class == EmailClass.HAM)
                 {
-                    falseCounter++;
+                    trueNegative++;
                 }
-
+                else if(isSpam == true &&email.Class == EmailClass.HAM)
+                {
+                    falsePositive++;
+                }
             }
 
-            Console.WriteLine("The number of correctly classified emails is: " + correctCounter);
-            Console.WriteLine("The number of incorrectly classified emails is: " + falseCounter);
-            int totalEmails = correctCounter + falseCounter;
-            double accuracy = (double)correctCounter / totalEmails * 100;
+            ConfusionMatrix confusionMatrix = new ConfusionMatrix(truePositive, trueNegative, falsePositive, falseNegative);
+
+            Console.WriteLine("True Positive (TP): Spam correctly predicted as Spam");
+            Console.WriteLine("False Positive (FP): Not Spam incorrectly predicted as Spam");
+            Console.WriteLine("False Negative (FN): Spam incorrectly predicted as Not Spam");
+            Console.WriteLine("True Negative (TN): Not Spam correctly predicted as Not Spam");
+            Console.WriteLine($"True positive: {confusionMatrix.TruePositive}");
+            Console.WriteLine($"False positive: {confusionMatrix.FalsePositive}");
+            Console.WriteLine($"True negative: {confusionMatrix.TrueNegative}");
+            Console.WriteLine($"False negative: {confusionMatrix.FalseNegative}");
+            Console.WriteLine("-------------------------------------------------");
+            Console.WriteLine($"Sensitivity: {confusionMatrix.Sensitivity}");
+            Console.WriteLine($"Specificity: {confusionMatrix.Specificity}");
+            Console.WriteLine($"Negative predictive value: {confusionMatrix.NegativePredictiveValue}");
+            Console.WriteLine($"Accuracy: {confusionMatrix.Accuracy}");
             stopwatch.Stop();
-            Console.WriteLine($"Accuracy: {accuracy:F2}%");
             Console.WriteLine($"Done in: {stopwatch.Elapsed.Seconds}s");
         }
     }
