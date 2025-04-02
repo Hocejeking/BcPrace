@@ -87,7 +87,7 @@ internal class Program
         stopwatch.Restart();
         Console.WriteLine("Classifying... (This can take a long time depending on the data size) ");
         List<EmailBenchmark> rewrittenEmails;
-        var filePathBenchmark = "../../../Dataset/rewrittenDataset.csv";
+        var filePathBenchmark = "../../../Dataset/enron_spam_data.csv";
         var configBenchmark = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
             HeaderValidated = null,
@@ -98,12 +98,19 @@ internal class Program
         using (var csv = new CsvReader(reader, configBenchmark))
         {
             rewrittenEmails = csv.GetRecords<EmailBenchmark>().ToList();
+            int totalEmailsBenchmark = rewrittenEmails.Count;
+            Console.WriteLine("Total emails to classify: {0}", totalEmailsBenchmark);
+            int counter = 0;
+            int percentage = 0;
             var trainedData = JsonSerializer.Deserialization();
             NaiveBayesClassifier naiveBayes = new NaiveBayesClassifier(trainedData, data);
             int truePositive = 0, trueNegative = 0, falsePositive = 0, falseNegative = 0;
             foreach (var email in rewrittenEmails)
             {
                 email.PerformDeserializationLogic();
+                counter++;
+                percentage = (int)((counter / (double)totalEmailsBenchmark) * 100); 
+                Console.Write($"\rProgress: {percentage}%");
                 bool isSpam = naiveBayes.Predict(email.TokenizedMessage);
                 if(isSpam == true && email.Class == EmailClass.SPAM)
                 {
@@ -124,7 +131,7 @@ internal class Program
             }
 
             ConfusionMatrix confusionMatrix = new ConfusionMatrix(truePositive, trueNegative, falsePositive, falseNegative);
-
+            Console.WriteLine("");
             Console.WriteLine("True Positive (TP): Spam correctly predicted as Spam");
             Console.WriteLine("False Positive (FP): Not Spam incorrectly predicted as Spam");
             Console.WriteLine("False Negative (FN): Spam incorrectly predicted as Not Spam");
