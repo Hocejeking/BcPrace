@@ -9,7 +9,6 @@ public class Dataset
         this.priorPropabilityHam = (decimal)numOfHamEmails / numOfEmails;
         this.hamWordsCount = hamWordsCount;
         this.spamWordsCount = spamWordsCount;
-        
     }
 
     public readonly int hamWordsCount;

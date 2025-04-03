@@ -74,7 +74,7 @@ internal class Program
             hamWordDictionary.CalculateProbabilities();
             spamWordDictionary.CalculateProbabilities();
 
-            data = new Dataset(counter, hamCounter, spamCounter, hamWordsCount, spamWordsCount);
+            data = new Dataset(counter, spamCounter, hamCounter, hamWordsCount, spamWordsCount);
         }
 
         JsonSerializer.Serialization(hamWordDictionary.GetSavedModel(), spamWordDictionary.GetSavedModel());
