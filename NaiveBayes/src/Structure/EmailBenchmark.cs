@@ -22,7 +22,8 @@ namespace NaiveBayes.src.Structure
 
         public void PerformDeserializationLogic()
         {
-            TokenizedMessage = TextProcessing.Tokenize(Message);
+            if (String.IsNullOrEmpty(RewrittenMessage)) { RewrittenMessage = Message; }
+            TokenizedMessage = TextProcessing.Tokenize(RewrittenMessage);
             TokenizedMessage = TextProcessing.RemoveStopWords(TokenizedMessage);
             TokenizedMessage = TextProcessing.RemovePunctuation(TokenizedMessage);
             TokenizedMessage = TextProcessing.RemoveIsolatedNums(TokenizedMessage);

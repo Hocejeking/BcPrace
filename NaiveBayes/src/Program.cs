@@ -87,7 +87,7 @@ internal class Program
         stopwatch.Restart();
         Console.WriteLine("Classifying... (This can take a long time depending on the data size) ");
         List<EmailBenchmark> rewrittenEmails;
-        var filePathBenchmark = "../../../Dataset/enron_spam_data.csv";
+        var filePathBenchmark = "../../../Dataset/emails_rewritten.csv";
         var configBenchmark = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
             HeaderValidated = null,
