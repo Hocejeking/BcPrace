@@ -54,7 +54,5 @@ namespace NaiveBayes.src.Classifier
             // Accuracy = (TP + TN) / (TP + TN + FP + FN)
             Accuracy = total == 0 ? Double.NaN : (TruePositive + TrueNegative) / total * 100;
         }
-
-
     }
 }

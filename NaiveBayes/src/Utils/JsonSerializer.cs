@@ -10,9 +10,9 @@ namespace NaiveBayes.src.Utils
 {
     public static class JsonSerializer
     {
-        public static void Serialization(Dictionary<string, decimal> hamProbs, Dictionary<string, decimal> spamProbs)
+        public static void Serialization(Dictionary<string, double> hamProbs, Dictionary<string, double> spamProbs)
         {
-            var data = new Dictionary<EmailClass, Dictionary<string, decimal>>
+            var data = new Dictionary<EmailClass, Dictionary<string, double>>
             {
                 { EmailClass.HAM, hamProbs},
                 { EmailClass.SPAM, spamProbs},
@@ -34,7 +34,7 @@ namespace NaiveBayes.src.Utils
             Console.WriteLine($"\nData has been saved to {filePath}");
         }
 
-        public static Dictionary<EmailClass, Dictionary<string, decimal>> Deserialization()
+        public static Dictionary<EmailClass, Dictionary<string, double>> Deserialization()
         {
             string filePath = "TrainedModel/TrainedModel.json";
             if (!File.Exists(filePath))
@@ -42,7 +42,7 @@ namespace NaiveBayes.src.Utils
                 throw new FileNotFoundException("File does not exist", filePath);
             }
             string jsonData = File.ReadAllText(filePath);
-            var model = JsonConvert.DeserializeObject<Dictionary<EmailClass, Dictionary<string, decimal>>>(jsonData);
+            var model = JsonConvert.DeserializeObject<Dictionary<EmailClass, Dictionary<string, double>>>(jsonData);
             return model;
         }
     }

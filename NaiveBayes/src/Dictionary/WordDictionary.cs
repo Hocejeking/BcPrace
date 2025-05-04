@@ -1,7 +1,7 @@
 public abstract class WordDictionary : IWordDictionary
 {
-    private Dictionary<string, decimal> _wordDictionary = new();
-    private Dictionary<string, decimal> _wordProbabilities = new();
+    private Dictionary<string, double> _wordDictionary = new();
+    private Dictionary<string, double> _wordProbabilities = new();
 
     public void AddWordOrUpdate(string token)
     {
@@ -15,17 +15,17 @@ public abstract class WordDictionary : IWordDictionary
         }
     }
 
-    public decimal GetAmountOfWord(string token)
+    public double GetAmountOfWord(string token)
     {
         return _wordDictionary.TryGetValue(token, out var count) ? count : 0;
     }
 
-    public decimal GetUniqueWordsCount()
+    public double GetWordsCount()
     {
-        return _wordDictionary.Count;
+        return _wordDictionary.Values.Sum();
     }
 
-    public void AddProbability(string token, decimal probability)
+    public void AddProbability(string token, double probability)
     {
         if (!_wordProbabilities.ContainsKey(token))
         {
@@ -33,21 +33,22 @@ public abstract class WordDictionary : IWordDictionary
         }
     }
 
-    public decimal GetProbability(string token)
+    public double GetProbability(string token)
     {
         return _wordProbabilities.TryGetValue(token, out var prob) ? prob : 0;
     }
 
-    public Dictionary<string, decimal> GetSavedModel()
+    public Dictionary<string, double> GetSavedModel()
     {
         return _wordProbabilities;
     }
 
     public void CalculateProbabilities()
     {
-        foreach (KeyValuePair<string, decimal> word in _wordDictionary)
+        double wordsCount = GetWordsCount();
+        foreach (KeyValuePair<string, double> word in _wordDictionary)
         {
-            decimal probability = word.Value / GetUniqueWordsCount();
+            double probability = word.Value / wordsCount;
             AddProbability(word.Key, probability);
         }
     }

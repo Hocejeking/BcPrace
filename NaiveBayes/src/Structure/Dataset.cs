@@ -5,8 +5,8 @@ public class Dataset
         this.numOfEmails = numOfEmails;
         this.numOfSpamEmails = numOfSpamEmails;
         this.numOfHamEmails = numOfHamEmails;
-        this.priorPropabilitySpam = (decimal)numOfSpamEmails / numOfEmails;
-        this.priorPropabilityHam = (decimal)numOfHamEmails / numOfEmails;
+        this.priorPropabilitySpam = (double) numOfSpamEmails / (double) numOfEmails;
+        this.priorPropabilityHam = (double) numOfHamEmails / (double)numOfEmails;
         this.hamWordsCount = hamWordsCount;
         this.spamWordsCount = spamWordsCount;
     }
@@ -16,6 +16,6 @@ public class Dataset
     public readonly int numOfEmails;
     public readonly int numOfSpamEmails;
     public readonly int numOfHamEmails;
-    public decimal priorPropabilitySpam;
-    public decimal priorPropabilityHam;
+    public double priorPropabilitySpam;
+    public double priorPropabilityHam;
 }

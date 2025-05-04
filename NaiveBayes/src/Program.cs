@@ -70,7 +70,7 @@ internal class Program
                     }
                 }
             }
-
+            Console.WriteLine("Calculating propabilities");
             hamWordDictionary.CalculateProbabilities();
             spamWordDictionary.CalculateProbabilities();
 
@@ -87,7 +87,7 @@ internal class Program
         stopwatch.Restart();
         Console.WriteLine("Classifying... (This can take a long time depending on the data size) ");
         List<EmailBenchmark> rewrittenEmails;
-        var filePathBenchmark = "../../../Dataset/emails_rewritten.csv";
+        var filePathBenchmark = "../../../Dataset/trecHam+enronSpam.csv";
         var configBenchmark = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
             HeaderValidated = null,
@@ -103,12 +103,15 @@ internal class Program
             int counter = 0;
             int percentage = 0;
             var trainedData = JsonSerializer.Deserialization();
-            NaiveBayesClassifier naiveBayes = new NaiveBayesClassifier(trainedData, data);
-            int truePositive = 0, trueNegative = 0, falsePositive = 0, falseNegative = 0;
+            NaiveBayesClassifier naiveBayes = new NaiveBayesClassifier(trainedData, data, hamWordDictionary, spamWordDictionary);
+            Console.WriteLine(data.priorPropabilityHam);
+            Console.WriteLine(data.priorPropabilitySpam);
+            int truePositive = 0, trueNegative = 0, falsePositive = 0, falseNegative = 0, totalSpam = 0, totalHam = 0;
             foreach (var email in rewrittenEmails)
             {
                 email.PerformDeserializationLogic();
                 counter++;
+                
                 percentage = (int)((counter / (double)totalEmailsBenchmark) * 100); 
                 Console.Write($"\rProgress: {percentage}%");
                 bool isSpam = naiveBayes.Predict(email.TokenizedMessage);
@@ -128,9 +131,23 @@ internal class Program
                 {
                     falsePositive++;
                 }
+
+                if(email.Class == EmailClass.SPAM)
+                {
+                    totalSpam++;
+                }
+                else if(email.Class == EmailClass.HAM)
+                {
+                    totalHam++;
+                }
             }
 
+            counter = 0;
+            percentage = 0;
+
             ConfusionMatrix confusionMatrix = new ConfusionMatrix(truePositive, trueNegative, falsePositive, falseNegative);
+            Console.WriteLine($"Total spam e-mails classified: {totalSpam}");
+            Console.WriteLine($"Total ham e-mails classified: {totalHam}");
             Console.WriteLine("");
             Console.WriteLine("True Positive (TP): Spam correctly predicted as Spam");
             Console.WriteLine("False Positive (FP): Not Spam incorrectly predicted as Spam");
@@ -143,10 +160,12 @@ internal class Program
             Console.WriteLine("-------------------------------------------------");
             Console.WriteLine($"Sensitivity: {confusionMatrix.Sensitivity}");
             Console.WriteLine($"Specificity: {confusionMatrix.Specificity}");
+            Console.WriteLine($"Precision: {confusionMatrix.Precision}");
             Console.WriteLine($"Negative predictive value: {confusionMatrix.NegativePredictiveValue}");
             Console.WriteLine($"Accuracy: {confusionMatrix.Accuracy}");
             stopwatch.Stop();
             Console.WriteLine($"Done in: {stopwatch.Elapsed.Seconds}s");
+            textDeserializer textDeserializer = new("TrainedModel/vystupniData.txt", confusionMatrix);
         }
     }
 

@@ -1,1 +1,1 @@
-class HamWordDictionary : WordDictionary { }
+public class HamWordDictionary : WordDictionary { }

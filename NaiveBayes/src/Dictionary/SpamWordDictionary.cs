@@ -1,1 +1,1 @@
-class SpamWordDictionary : WordDictionary { }
+public class SpamWordDictionary : WordDictionary { }
